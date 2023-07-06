@@ -69,7 +69,7 @@ public class CreditAccountTest {
 
         account.add(-1_000);
 
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(1_000, account.getBalance());
     }
 
 
