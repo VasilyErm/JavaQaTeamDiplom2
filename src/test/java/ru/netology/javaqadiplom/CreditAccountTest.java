@@ -75,15 +75,13 @@ public class CreditAccountTest {
 
     @Test  // Проверка исключения при корректных параметрах
     public void exceptionTest1() {
-        CreditAccount account = new CreditAccount(
-                1_000,
-                5_000,
-                15
-        );
-
-        Assertions.assertEquals(1_000, account.getBalance());
-        Assertions.assertEquals(5_000, account.getCreditLimit());
-        Assertions.assertEquals(15, account.getRate());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CreditAccount account = new CreditAccount(
+                    1_000,
+                    5_000,
+                    15
+            );
+        });
     }
 
     @Test  // Проверка исключения при некорректных параметрах initialBalance
@@ -157,7 +155,7 @@ public class CreditAccountTest {
 
         account.pay(10_000);
 
-        Assertions.assertEquals(5_000, account.getBalance());
+        Assertions.assertEquals(0, account.getBalance());
     }
 
     @Test  // Проверка оплаты, при начальном балансе -1_000, в пределах кредитного лимита
@@ -200,7 +198,7 @@ public class CreditAccountTest {
     }
 
 
-    @Test  // Операция расчёта процентов, при отсутствии задолжености ,с начальным балансом = 200
+    @Test  // Операция расчёта процентов, при отсутствии задолженности ,с начальным балансом = 200
     public void rateTest1() {
         CreditAccount account = new CreditAccount(
                 200,
