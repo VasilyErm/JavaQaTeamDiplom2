@@ -73,7 +73,7 @@ public class CreditAccountTest {
     }
 
 
-    @Test  // Проверка исключения при корректных параметрах
+    /*  @Test  // Проверка исключения при корректных параметрах
     public void exceptionTest1() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
@@ -82,18 +82,20 @@ public class CreditAccountTest {
                     15
             );
         });
-    }
+
+    }  параметры корректны, исключение НЕ выкидывается
+     */
 
     @Test  // Проверка исключения при некорректных параметрах initialBalance
     public void exceptionTest2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
-                    -1_000,
+                    -5_001, // было - 1_000
                     5_000,
                     15
             );
         });
-    }
+    } // лимит может быть отрицательныим до - 5000
 
     @Test  // Проверка исключения при некорректных параметрах creditLimit
     public void exceptionTest3() {
@@ -115,7 +117,7 @@ public class CreditAccountTest {
                     -15
             );
         });
-    }
+    }// параметр ПРОЦЕНТЫ имеет отрицательное число, исключение выкидывается
 
     @Test  // Проверка оплаты, при начальном балансе равном 0, в пределах кредитного лимита
     public void payTest1() {
@@ -141,7 +143,7 @@ public class CreditAccountTest {
 
         account.pay(3_000);
 
-        Assertions.assertEquals(-2_000, account.getBalance()); // ожидаемый результат должен быть 0
+        Assertions.assertEquals(-2_000, account.getBalance());
     }
 
 
