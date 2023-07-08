@@ -141,7 +141,7 @@ public class CreditAccountTest {
 
         account.pay(3_000);
 
-        Assertions.assertEquals(-2_000, account.getBalance());
+        Assertions.assertEquals(-2_000, account.getBalance()); // ожидаемый результат должен быть 0
     }
 
 
@@ -168,7 +168,7 @@ public class CreditAccountTest {
 
         account.pay(1_000);
 
-        Assertions.assertEquals(-2_000, account.getBalance());
+        Assertions.assertEquals(-2_000, account.getBalance()); // ожидаемый 0
     }
 
     @Test  // Проверка оплаты, при начальном балансе равном -1_000, с превышением кредитного лимита
