@@ -90,7 +90,7 @@ public class CreditAccountTest {
     public void exceptionTest2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
-                    -5_001, // было - 1_000
+                    -5_001,
                     5_000,
                     15
             );
