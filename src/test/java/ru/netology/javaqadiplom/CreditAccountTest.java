@@ -73,24 +73,21 @@ public class CreditAccountTest {
     }
 
 
-    /*  @Test  // Проверка исключения при корректных параметрах
+    @Test  // Проверка исключения при корректных параметрах
     public void exceptionTest1() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account = new CreditAccount(
-                    1_000,
-                    5_000,
-                    15
-            );
-        });
+        CreditAccount account = new CreditAccount(
+                1_000,
+                5_000,
+                15
+        );
+    }
 
-    }  параметры корректны, исключение НЕ выкидывается
-     */
 
     @Test  // Проверка исключения при некорректных параметрах initialBalance
     public void exceptionTest2() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             CreditAccount account = new CreditAccount(
-                    -5_001,
+                    -10_000,
                     5_000,
                     15
             );
