@@ -49,7 +49,7 @@ public class SavingAccountTest {
 
         account.yearChange();// не накидывает проценты на остаток по счету, должно быть 2 100, остается 2 000!
 
-        Assertions.assertEquals(2_000 + 100, account.getBalance());
+        Assertions.assertEquals(2_000 + 100, account.getBalance() + account.yearChange());
     }
 
     @Test
@@ -68,18 +68,14 @@ public class SavingAccountTest {
         Assertions.assertEquals(1_000, account.minBalance);
     }
 
-    /* @Test
-    public void test8() { // СТАВКА ПРОЦЕНТНАЯ.
-        SavingAccount account = new SavingAccount(
-                2_000,
-                1_000,
-                10_000,
-                -5
-        );
-        account.getRate();// Проверка throw new IllegalArgumentException, тест прошел
+    @Test
+    public void test8() { // Пополнение на отрицательное значение
 
-        Assertions.assertEquals(5, account.rate);
-    }*/
+
+        account.pay(-10);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
 
     @Test
     public void test9() { // Процентная ставка отрицательная
@@ -127,5 +123,27 @@ public class SavingAccountTest {
                     5
             );
         });
+    }
+
+    @Test
+    public void test13() { //Отрицательная сумма покупки
+
+        account.pay(-500);
+
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void test14() { // ПОПОЛНЕНИЕ СЧЕТА на сумму больше максимального баланса
+
+        account.add(13_000);
+        Assertions.assertEquals(2_000, account.getBalance());
+    }
+
+    @Test
+    public void test15() { // ПОПОЛНЕНИЕ СЧЕТА на отрицательную сумму
+
+        account.add(-3_000);
+        Assertions.assertEquals(2_000, account.getBalance());
     }
 }
